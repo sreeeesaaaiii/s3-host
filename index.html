@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BizPro - Business growth, digital marketing, web development and consulting solutions.">
+  <title>BizPro | We Grow Your Business</title>
+  <style>
+    :root{
+      --blue:#0878ff;
+      --blue-dark:#0561d5;
+      --navy:#061525;
+      --navy-2:#0b1d31;
+      --text:#111827;
+      --muted:#5f6b7a;
+      --white:#fff;
+      --surface:#f7f9fc;
+      --border:#e5eaf1;
+      --shadow:0 12px 35px rgba(13,31,52,.10);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:var(--white);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,textarea{font:inherit}
+    .container{width:min(1180px,92%);margin:auto}
+
+    /* Header */
+    header{
+      position:fixed;top:0;left:0;width:100%;z-index:1000;
+      background:rgba(4,18,33,.96);backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .nav{
+      height:80px;display:flex;align-items:center;justify-content:space-between;
+      gap:30px;
+    }
+    .logo{display:flex;align-items:center;gap:10px;color:white;font-weight:800}
+    .logo-mark{
+      width:42px;height:42px;position:relative;display:grid;place-items:center;
+      color:var(--blue);font-size:28px;font-weight:900;
+    }
+    .logo-mark::before{
+      content:"";position:absolute;inset:4px 8px 0 8px;
+      border-left:8px solid var(--blue);border-right:8px solid var(--blue);
+      border-top:12px solid transparent;opacity:.95;
+    }
+    .logo-text{font-size:22px;line-height:1}
+    .logo-text small{display:block;font-size:10px;font-weight:500;margin-top:4px;letter-spacing:.2px}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+    .nav-links a{
+      color:#f2f5f9;font-size:14px;font-weight:650;padding:29px 0 24px;
+      border-bottom:3px solid transparent;transition:.2s;
+    }
+    .nav-links a:hover,.nav-links a.active{color:white;border-bottom-color:var(--blue)}
+    .theme-btn{
+      width:50px;height:34px;border:1px solid #718096;border-radius:30px;
+      background:transparent;color:white;cursor:pointer;position:relative;
+    }
+    .theme-btn span{
+      width:22px;height:22px;border-radius:50%;background:white;color:#1f2937;
+      position:absolute;left:5px;top:5px;display:grid;place-items:center;font-size:12px;
+      transition:.25s;
+    }
+    .menu-btn{display:none;background:none;border:0;color:white;font-size:27px;cursor:pointer}
+
+    /* Hero */
+    .hero{
+      min-height:680px;padding:140px 0 70px;color:white;
+      background:
+        linear-gradient(90deg,rgba(6,21,37,.96) 0%,rgba(6,21,37,.88) 42%,rgba(6,21,37,.57) 100%),
+        url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2000&q=85") center/cover;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;align-items:center;min-height:510px}
+    .eyebrow{color:#1d82ff;font-size:13px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+    .eyebrow::before{content:"";display:inline-block;width:35px;height:3px;background:var(--blue);vertical-align:middle;margin-right:9px}
+    h1{font-size:clamp(42px,5vw,66px);line-height:1.08;margin:18px 0 24px;letter-spacing:-2px}
+    h1 span{color:var(--blue)}
+    .hero p{max-width:620px;font-size:17px;color:#e2e8f0;margin-bottom:32px}
+    .buttons{display:flex;gap:18px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:13px 24px;border-radius:5px;border:1px solid transparent;
+      font-weight:700;cursor:pointer;transition:.2s;
+    }
+    .btn-primary{background:var(--blue);color:white}
+    .btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px)}
+    .btn-outline{border-color:white;color:white;background:transparent}
+    .btn-outline:hover{background:white;color:var(--navy)}
+    .hero-features{display:grid;gap:20px}
+    .hero-feature{display:flex;gap:18px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.4)}
+    .feature-icon{
+      flex:0 0 56px;height:56px;border-radius:50%;background:var(--blue);
+      display:grid;place-items:center;font-size:25px
+    }
+    .hero-feature h3{font-size:16px;margin-bottom:3px}
+    .hero-feature p{font-size:14px;margin:0;color:#e6edf5}
+
+    /* General */
+    section{padding:78px 0}
+    .section-title{font-size:30px;line-height:1.2;margin-bottom:10px}
+    .underline{width:50px;height:3px;background:var(--blue);margin:10px 0 20px}
+    .section-intro{color:var(--muted);max-width:500px}
+    .services{background:white}
+    .services-grid{display:grid;grid-template-columns:260px repeat(4,1fr);gap:20px;align-items:stretch}
+    .service-card{
+      padding:28px 20px;border:1px solid var(--border);border-radius:10px;background:white;
+      box-shadow:var(--shadow);text-align:center;transition:.25s;
+    }
+    .service-card:hover{transform:translateY(-7px)}
+    .service-icon{
+      width:55px;height:55px;margin:0 auto 18px;border-radius:50%;background:#edf5ff;
+      color:var(--blue);display:grid;place-items:center;font-size:24px
+    }
+    .service-card h3{font-size:16px;margin-bottom:8px}
+    .service-card p{font-size:13px;color:var(--muted)}
+
+    /* Stats */
+    .stats{
+      color:white;background:
+      linear-gradient(rgba(7,24,42,.92),rgba(7,24,42,.92)),
+      url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=80") center/cover;
+    }
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .stat{text-align:center;padding:15px 20px;border-right:1px solid rgba(255,255,255,.45)}
+    .stat:last-child{border-right:0}
+    .stat .big{font-size:32px;font-weight:800;color:white}
+    .stat .icon{font-size:28px;color:var(--blue);margin-right:10px}
+    .stat p{font-size:13px;color:#e5e7eb}
+
+    /* About */
+    .about-grid{display:grid;grid-template-columns:1fr 1.05fr 1fr 1fr;gap:28px;align-items:center}
+    .about-image{
+      height:245px;border-radius:8px;
+      background:url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85") center/cover;
+    }
+    .about p{color:var(--muted);font-size:14px}
+    .why ul{list-style:none;display:grid;gap:11px}
+    .why li{font-size:14px}
+    .why li::before{content:"✓";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--blue);color:white;font-size:11px;margin-right:8px}
+    .contact-mini{font-size:14px;color:#344054}
+    .contact-mini div{margin:9px 0}
+    .socials{display:flex;gap:9px;margin-top:15px}
+    .socials a{width:30px;height:30px;border-radius:6px;background:#eaf3ff;color:var(--blue);display:grid;place-items:center;font-size:13px;font-weight:800}
+
+    /* Portfolio */
+    .portfolio{background:var(--surface)}
+    .center{text-align:center}
+    .center .underline{margin:12px auto 35px}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .project{background:white;border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+    .project-img{height:190px;background-size:cover;background-position:center}
+    .project:nth-child(1) .project-img{background-image:url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80")}
+    .project:nth-child(2) .project-img{background-image:url("https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80")}
+    .project:nth-child(3) .project-img{background-image:url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80")}
+    .project-body{padding:20px}
+    .project-body h3{margin-bottom:5px}
+    .project-body p{font-size:13px;color:var(--muted)}
+
+    /* Testimonials */
+    .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .quote{padding:25px;border:1px solid var(--border);border-radius:10px;background:white;box-shadow:0 8px 25px rgba(13,31,52,.06)}
+    .stars{color:#f5b301;letter-spacing:2px;margin-bottom:12px}
+    .quote p{font-size:14px;color:var(--muted)}
+    .person{display:flex;align-items:center;gap:12px;margin-top:18px}
+    .avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#eaf3ff;color:var(--blue);font-weight:800}
+
+    /* Pricing */
+    .pricing{background:var(--surface)}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .price-card{background:white;border:1px solid var(--border);border-radius:12px;padding:32px;text-align:center}
+    .price-card.featured{border:2px solid var(--blue);transform:translateY(-8px)}
+    .badge{display:inline-block;background:var(--blue);color:white;padding:4px 12px;border-radius:30px;font-size:11px;font-weight:700;margin-bottom:12px}
+    .price{font-size:40px;font-weight:850;margin:12px 0}
+    .price small{font-size:13px;font-weight:500;color:var(--muted)}
+    .price-card ul{list-style:none;text-align:left;margin:25px 0;display:grid;gap:10px;color:var(--muted);font-size:14px}
+    .price-card li::before{content:"✓";color:var(--blue);font-weight:800;margin-right:8px}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:45px}
+    .contact-info p{color:var(--muted);margin-bottom:20px}
+    .info-item{display:flex;gap:14px;margin:18px 0}
+    .info-icon{width:40px;height:40px;border-radius:50%;background:#eaf3ff;color:var(--blue);display:grid;place-items:center;flex:none}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    form input,form textarea{
+      width:100%;border:1px solid var(--border);border-radius:7px;padding:13px 14px;
+      outline:none;transition:.2s;background:white
+    }
+    form input:focus,form textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(8,120,255,.1)}
+    form textarea{grid-column:1/-1;min-height:140px;resize:vertical}
+    form .btn{grid-column:1/-1;width:max-content}
+
+    /* Footer */
+    footer{background:#041525;color:#d8e1ec;text-align:center;padding:22px 0;font-size:13px}
+    .top-btn{
+      position:fixed;right:20px;bottom:20px;width:40px;height:40px;border:0;border-radius:6px;
+      background:var(--blue);color:white;font-size:20px;cursor:pointer;display:none;z-index:900
+    }
+    .top-btn.show{display:block}
+
+    /* Dark mode */
+    body.dark{background:#08111d;color:#eef4fb}
+    body.dark .services,body.dark section:not(.hero):not(.stats):not(.portfolio):not(.pricing){background:#08111d}
+    body.dark .service-card,body.dark .quote,body.dark .price-card,body.dark form input,body.dark form textarea,body.dark .project{
+      background:#0e1c2b;border-color:#203247;color:#eef4fb
+    }
+    body.dark .portfolio,body.dark .pricing{background:#0b1725}
+    body.dark .section-intro,body.dark .service-card p,body.dark .project-body p,body.dark .quote p,body.dark .contact-info p,body.dark .about p{color:#aebdcd}
+    body.dark .contact-mini{color:#c8d4e0}
+    body.dark .service-icon{background:#112b47}
+    body.dark .socials a{background:#112b47}
+    body.dark .theme-btn span{left:23px}
+
+    /* Responsive */
+    @media(max-width:1050px){
+      .nav-links{gap:17px}
+      .services-grid{grid-template-columns:1fr 1fr}
+      .services-grid > div:first-child{grid-column:1/-1}
+      .about-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:800px){
+      .nav{height:70px}
+      .menu-btn{display:block}
+      .nav-links{
+        position:absolute;top:70px;left:0;width:100%;display:none;flex-direction:column;
+        background:#061525;padding:12px 5%;gap:0;box-shadow:0 12px 25px rgba(0,0,0,.2)
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{width:100%;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+      .theme-btn{margin-left:auto}
+      .hero-grid{grid-template-columns:1fr;gap:45px}
+      .hero{min-height:auto}
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .stat{border-bottom:1px solid rgba(255,255,255,.3)}
+      .stat:nth-child(2){border-right:0}
+      .portfolio-grid,.testimonials-grid,.pricing-grid{grid-template-columns:1fr}
+      .price-card.featured{transform:none}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:560px){
+      h1{font-size:40px}
+      section{padding:60px 0}
+      .services-grid,.about-grid{grid-template-columns:1fr}
+      .services-grid > div:first-child{grid-column:auto}
+      .stats-grid{grid-template-columns:1fr}
+      .stat{border-right:0}
+      form{grid-template-columns:1fr}
+      form textarea,form .btn{grid-column:auto}
+      .hero{padding-top:115px}
+      .logo-text{font-size:19px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home" aria-label="BizPro home">
+      <div class="logo-mark">▰</div>
+      <div class="logo-text">BizPro<small>We Grow Your Business</small></div>
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><span>◐</span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Welcome to BizPro</div>
+        <h1>We Help Your Business<br><span>Grow To The Next Level</span></h1>
+        <p>We are a team of professionals providing innovative solutions to help businesses grow, scale and succeed in the digital era.</p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#contact">Get Started <span>→</span></a>
+          <a class="btn btn-outline" href="#about">Learn More <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="hero-features">
+        <div class="hero-feature">
+          <div class="feature-icon">▥</div>
+          <div><h3>Business Strategy</h3><p>We create smart strategies that drive real growth.</p></div>
+        </div>
+        <div class="hero-feature">
+          <div class="feature-icon">🚀</div>
+          <div><h3>Market Analysis</h3><p>In-depth research and analysis to stay ahead of the market.</p></div>
+        </div>
+        <div class="hero-feature">
+          <div class="feature-icon">♟</div>
+          <div><h3>24/7 Support</h3><p>We are here to support you anytime, anywhere.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="container services-grid">
+      <div>
+        <h2 class="section-title">Our Services</h2>
+        <div class="underline"></div>
+        <p class="section-intro">We offer a wide range of services to help your business succeed in today's competitive world.</p>
+      </div>
+      <div class="service-card"><div class="service-icon">💼</div><h3>Business Strategy</h3><p>Strategic planning and execution to achieve long-term growth.</p></div>
+      <div class="service-card"><div class="service-icon">▣</div><h3>Digital Marketing</h3><p>Boost your online presence and reach your target audience.</p></div>
+      <div class="service-card"><div class="service-icon">⚙</div><h3>Web Development</h3><p>We build fast, responsive and modern websites.</p></div>
+      <div class="service-card"><div class="service-icon">◉</div><h3>Consulting</h3><p>Expert advice to help you solve complex challenges.</p></div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat"><span class="icon">☺</span><span class="big">250+</span><p>Happy Clients</p></div>
+      <div class="stat"><span class="icon">▣</span><span class="big">500+</span><p>Projects Completed</p></div>
+      <div class="stat"><span class="icon">♜</span><span class="big">10+</span><p>Years of Experience</p></div>
+      <div class="stat"><span class="icon">♧</span><span class="big">50+</span><p>Team Members</p></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about">
+        <h2 class="section-title">About Us</h2>
+        <div class="underline"></div>
+        <p>BizPro is a leading business solutions provider dedicated to helping companies grow and succeed. Our team of experts delivers innovative strategies and results-driven solutions.</p>
+      </div>
+      <div class="about-image" aria-label="BizPro team working in an office"></div>
+      <div class="why">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="underline"></div>
+        <ul>
+          <li>Experienced Professionals</li>
+          <li>Customer-Centric Approach</li>
+          <li>Quality Results</li>
+          <li>Affordable Pricing</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="section-title">Contact Us</h2>
+        <div class="underline"></div>
+        <div class="contact-mini">
+          <div>☎ +1 123 456 7890</div>
+          <div>✉ info@bizpro.com</div>
+          <div>⌖ 123 Business Street,<br>New York, USA</div>
+        </div>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Instagram">◎</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="center">
+        <h2 class="section-title">Our Portfolio</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="portfolio-grid">
+        <article class="project"><div class="project-img"></div><div class="project-body"><h3>E-Commerce Growth</h3><p>Digital strategy and conversion improvements for a growing online store.</p></div></article>
+        <article class="project"><div class="project-img"></div><div class="project-body"><h3>Business Analytics</h3><p>Data-driven dashboards that help teams make faster decisions.</p></div></article>
+        <article class="project"><div class="project-img"></div><div class="project-body"><h3>Digital Transformation</h3><p>A modern web presence designed to support business expansion.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <div class="center">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="testimonials-grid">
+        <article class="quote"><div class="stars">★★★★★</div><p>“BizPro helped us turn our ideas into a clear growth strategy and a much stronger digital presence.”</p><div class="person"><div class="avatar">AR</div><div><strong>Alex R.</strong><br><small>Business Owner</small></div></div></article>
+        <article class="quote"><div class="stars">★★★★★</div><p>“Professional, responsive and focused on results. The team made the entire project easy to manage.”</p><div class="person"><div class="avatar">SM</div><div><strong>Sarah M.</strong><br><small>Marketing Lead</small></div></div></article>
+        <article class="quote"><div class="stars">★★★★★</div><p>“Our new website is faster, clearer and much easier for customers to use. Great experience overall.”</p><div class="person"><div class="avatar">DK</div><div><strong>David K.</strong><br><small>Founder</small></div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="center">
+        <h2 class="section-title">Simple Pricing</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Starter</h3><div class="price">$99 <small>/ month</small></div>
+          <ul><li>Business consultation</li><li>Basic analytics</li><li>Email support</li><li>Monthly report</li></ul>
+          <a class="btn btn-outline" style="color:var(--blue);border-color:var(--blue)" href="#contact">Choose Plan</a>
+        </div>
+        <div class="price-card featured">
+          <span class="badge">MOST POPULAR</span><h3>Professional</h3><div class="price">$249 <small>/ month</small></div>
+          <ul><li>Growth strategy</li><li>Digital marketing</li><li>Web development</li><li>Priority support</li></ul>
+          <a class="btn btn-primary" href="#contact">Choose Plan</a>
+        </div>
+        <div class="price-card">
+          <h3>Enterprise</h3><div class="price">$499 <small>/ month</small></div>
+          <ul><li>Custom strategy</li><li>Advanced analytics</li><li>Dedicated team</li><li>24/7 support</li></ul>
+          <a class="btn btn-outline" style="color:var(--blue);border-color:var(--blue)" href="#contact">Choose Plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <h2 class="section-title">Let's Work Together</h2>
+        <div class="underline"></div>
+        <p>Have a business idea or a project in mind? Send us a message and our team will get back to you.</p>
+        <div class="info-item"><div class="info-icon">☎</div><div><strong>Phone</strong><br>+1 123 456 7890</div></div>
+        <div class="info-item"><div class="info-icon">✉</div><div><strong>Email</strong><br>info@bizpro.com</div></div>
+        <div class="info-item"><div class="info-icon">⌖</div><div><strong>Office</strong><br>123 Business Street, New York, USA</div></div>
+      </div>
+
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <input type="text" id="company" placeholder="Company Name">
+        <input type="text" id="subject" placeholder="Subject" required>
+        <textarea id="message" placeholder="Tell us about your project..." required></textarea>
+        <button class="btn btn-primary" type="submit">Send Message →</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">© <span id="year"></span> BizPro. All Rights Reserved.</div>
+</footer>
+
+<button class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+  const themeBtn = document.getElementById("themeBtn");
+  const topBtn = document.getElementById("topBtn");
+  const form = document.getElementById("contactForm");
+
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    menuBtn.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
+  });
+
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuBtn.textContent = "☰";
+    });
+  });
+
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("bizproTheme", document.body.classList.contains("dark") ? "dark" : "light");
+  });
+
+  if (localStorage.getItem("bizproTheme") === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  window.addEventListener("scroll", () => {
+    topBtn.classList.toggle("show", window.scrollY > 500);
+
+    const sections = document.querySelectorAll("main section[id]");
+    let current = "home";
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 140) current = section.id;
+    });
+    document.querySelectorAll(".nav-links a").forEach(a => {
+      a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+    });
+  });
+
+  topBtn.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    alert(`Thanks, ${name}! Your message has been received. This demo form is working on the browser; connect it to a backend/email service to actually send messages.`);
+    form.reset();
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
